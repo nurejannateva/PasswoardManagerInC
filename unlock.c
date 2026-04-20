@@ -18,12 +18,10 @@ static void on_add_clicked(GtkButton *btn, gpointer window) {
     GtkWidget *card = gtk_box_new(GTK_ORIENTATION_VERTICAL, 20);
     gtk_widget_set_name(card, "modal-card");
 
-    /* ✅ Perfect center */
     gtk_widget_set_hexpand(card, TRUE);
     gtk_widget_set_vexpand(card, TRUE);
     gtk_widget_set_halign(card, GTK_ALIGN_CENTER);
     gtk_widget_set_valign(card, GTK_ALIGN_CENTER);
-
     gtk_widget_set_size_request(card, 420, 420);
 
     gtk_box_append(GTK_BOX(overlay), card);
@@ -58,7 +56,6 @@ static void on_add_clicked(GtkButton *btn, gpointer window) {
     gtk_widget_set_name(cancel, "modal-cancel");
     gtk_box_append(GTK_BOX(card), cancel);
 
-    /* ✅ Only modal close */
     g_signal_connect(cancel, "clicked", G_CALLBACK(gtk_window_destroy), dialog);
     g_signal_connect(save, "clicked", G_CALLBACK(gtk_window_destroy), dialog);
 
@@ -178,10 +175,6 @@ static void activate(GtkApplication *app, gpointer user_data) {
         " box-shadow: 0 8px 20px rgba(0,0,0,0.20);"
         "}"
 
-        "#btn:active {"
-        " box-shadow: 0 3px 8px rgba(0,0,0,0.2);"
-        "}"
-
         "#row {"
         " background: #f4fffd;"
         " padding: 18px;"
@@ -228,12 +221,24 @@ static void activate(GtkApplication *app, gpointer user_data) {
         " color: white;"
         " border-radius: 14px;"
         " padding: 12px;"
-        " box-shadow: 0 6px 14px rgba(0,0,0,0.2);"
         "}"
 
         "#modal-cancel {"
         " background: transparent;"
         " color: #0f9d8f;"
+        "}"
+
+        /* 🔥 GLOBAL BUTTON EFFECT */
+        "button {"
+        " transition: all 0.2s ease;"
+        "}"
+
+        "button:hover {"
+        " opacity: 0.9;"
+        "}"
+
+        "button:active {"
+        " transform: scale(0.95);"
         "}";
 
     GtkCssProvider *provider = gtk_css_provider_new();
