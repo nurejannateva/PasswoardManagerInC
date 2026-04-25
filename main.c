@@ -64,7 +64,7 @@ static void activate(GtkApplication *app, gpointer user_data) {
 
     gtk_overlay_add_overlay(GTK_OVERLAY(overlay), settings_btn);
 
-    // 👉 CONNECT SETTINGS BUTTON
+    //  CONNECT SETTINGS BUTTON
     g_signal_connect(settings_btn, "clicked", G_CALLBACK(open_settings_window), app);
 
     // Lock icon
