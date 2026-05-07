@@ -8,7 +8,7 @@ static void on_unlock_clicked(GtkWidget *widget, gpointer data) {
     g_print("Password: %s\n", password);
 }
 
-// 👉 Settings window open function
+
 static void open_settings_window(GtkWidget *widget, gpointer data) {
     GtkApplication *app = GTK_APPLICATION(data);
 
@@ -54,7 +54,7 @@ static void activate(GtkApplication *app, gpointer user_data) {
     box = gtk_box_new(GTK_ORIENTATION_VERTICAL, 20);
     gtk_box_append(GTK_BOX(card), box);
 
-    // Settings button (top right)
+    
     settings_btn = gtk_button_new_with_label("⚙");
     gtk_widget_add_css_class(settings_btn, "icon-btn");
     gtk_widget_set_halign(settings_btn, GTK_ALIGN_END);
@@ -64,22 +64,21 @@ static void activate(GtkApplication *app, gpointer user_data) {
 
     gtk_overlay_add_overlay(GTK_OVERLAY(overlay), settings_btn);
 
-    //  CONNECT SETTINGS BUTTON
     g_signal_connect(settings_btn, "clicked", G_CALLBACK(open_settings_window), app);
 
-    // Lock icon
+   
     icon = gtk_label_new("🔒");
     gtk_widget_add_css_class(icon, "lock-icon");
     gtk_widget_set_halign(icon, GTK_ALIGN_CENTER);
     gtk_box_append(GTK_BOX(box), icon);
 
-    // Title
+  
     title = gtk_label_new("Please unlock your vault");
     gtk_widget_add_css_class(title, "title");
     gtk_widget_set_halign(title, GTK_ALIGN_CENTER);
     gtk_box_append(GTK_BOX(box), title);
 
-    // Entry
+   
     entry = gtk_entry_new();
     gtk_entry_set_visibility(GTK_ENTRY(entry), FALSE);
     gtk_entry_set_placeholder_text(GTK_ENTRY(entry), "••••••••");
@@ -87,14 +86,14 @@ static void activate(GtkApplication *app, gpointer user_data) {
     gtk_widget_set_hexpand(entry, TRUE);
     gtk_box_append(GTK_BOX(box), entry);
 
-    // Button
+
     button = gtk_button_new_with_label("UNLOCK");
     gtk_widget_add_css_class(button, "main-btn");
     gtk_widget_set_hexpand(button, TRUE);
     g_signal_connect(button, "clicked", G_CALLBACK(on_unlock_clicked), entry);
     gtk_box_append(GTK_BOX(box), button);
 
-    // CSS
+  
     GtkCssProvider *provider = gtk_css_provider_new();
 
     gtk_css_provider_load_from_data(provider,
